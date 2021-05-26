@@ -48,7 +48,7 @@ MONITOR $UPS_NAME@localhost 1 monitor $API_PASSWORD master
 SHUTDOWNCMD "$SHUTDOWN_CMD"
 EOF
 
-chgrp -R nut /etc/nut /dev
+chgrp -R nut /etc/nut /dev/bus/usb
 chmod -R o-rwx /etc/nut
 
 /usr/sbin/upsdrvctl start
