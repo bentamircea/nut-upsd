@@ -10,11 +10,15 @@ then
    ADMIN_PASSWORD=$(dd if=/dev/urandom bs=18 count=1 2>/dev/null | base64)
 fi
 
+cat >/etc/nut/nut.conf <<EOF
+MODE = "$NUT_MODE"
+
 cat >/etc/nut/ups.conf <<EOF
 [$UPS_NAME]
 	desc = "$UPS_DESC"
 	driver = $UPS_DRIVER
 	port = $UPS_PORT
+	langid_fix=0x409
 EOF
 
 cat >/etc/nut/upsd.conf <<EOF
@@ -31,10 +35,15 @@ cat >/etc/nut/upsd.users <<EOF
 [monitor]
 	password = $API_PASSWORD
 	upsmon master
+
+[external]
+  password = $EXTERNAL_PASSWORD
+  upsmon slave
 EOF
 
 cat >/etc/nut/upsmon.conf <<EOF
 MONITOR $UPS_NAME@localhost 1 monitor $API_PASSWORD master
+
 SHUTDOWNCMD "$SHUTDOWN_CMD"
 EOF
 

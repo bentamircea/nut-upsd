@@ -3,12 +3,14 @@ FROM alpine:3.12
 LABEL maintainer="docker@upshift.fr"
 
 ENV NUT_VERSION 2.7.4
+ENV NUT_MODE="standalone"
 
 ENV UPS_NAME="ups"
 ENV UPS_DESC="UPS"
 ENV UPS_DRIVER="usbhid-ups"
 ENV UPS_PORT="auto"
 
+ENV EXTERNAL_PASSWORD=""
 ENV API_PASSWORD=""
 ENV ADMIN_PASSWORD=""
 
