@@ -12,6 +12,7 @@ fi
 
 cat >/etc/nut/nut.conf <<EOF
 MODE = "$NUT_MODE"
+EOF
 
 cat >/etc/nut/ups.conf <<EOF
 [$UPS_NAME]
